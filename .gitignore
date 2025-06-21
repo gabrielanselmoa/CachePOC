@@ -1,0 +1,74 @@
+﻿# Build
+bin/
+obj/
+out/
+*.dll
+*.exe
+*.app
+*.pdb
+*.cache
+*.log
+
+# Rider/JetBrains
+.idea/
+*.sln.iml
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+riderModule.iml
+/.idea/
+/_ReSharper*/
+/_ReSharper.Caches/
+
+# VS Code
+.vscode/
+
+# NuGet Packages
+/packages/
+*.nupkg
+
+# Runtime
+*.db
+*.mdf
+*.ldf
+*.sqlite
+*.bak
+
+# Secrets & Env
+.env
+.env.*
+secrets.json
+appsettings.Local.json
+appsettings.Development.json
+
+# Docker
+*.tar
+docker-compose.override.yml
+*.sql
+
+# Git
+*.orig
+
+# Test Results
+TestResults/
+coverage/
+*.coverage
+*.coveragexml
+*.testresult
+
+# Others
+*.swp
+*.DS_Store
+Thumbs.db
+*.tgz
+*.gz
+*.zip
+
+# OS-specific
+ehthumbs.db
+Desktop.ini
+
+# Logs
+*.log
+logs/

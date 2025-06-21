@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CachePOC", "CachePOC\CachePOC.csproj", "{644C2264-0D8E-486C-A8C9-8B12BE279DF3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{644C2264-0D8E-486C-A8C9-8B12BE279DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{644C2264-0D8E-486C-A8C9-8B12BE279DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{644C2264-0D8E-486C-A8C9-8B12BE279DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{644C2264-0D8E-486C-A8C9-8B12BE279DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
