@@ -2,6 +2,7 @@ using CachePOC.Application.Dto;
 using CachePOC.Application.Repository;
 using CachePOC.Infra.Data.Config;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,20 +16,43 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Repository DI
 builder.Services.AddScoped<IRepository, Repository>();
 
+// Memory Cache Setup
+builder.Services.AddMemoryCache();
+
+
 var app = builder.Build();
 
 // Endpoints
-app.MapGet("/products", async (IRepository repository) =>
+app.MapGet("/products", async (IRepository repository, IMemoryCache cache) =>
 {
+    if (cache.TryGetValue("products", out var result))
+        return Results.Ok(result);
+    
     var products = await repository.GetProducts();
     if (!products.Any()) return Results.NotFound("No products found");
+    
+    cache.Set("products", products, new MemoryCacheEntryOptions
+    {
+        AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(60),
+        SlidingExpiration = TimeSpan.FromMinutes(10)
+    });
     return Results.Ok(products);
 });
 
-app.MapGet("/products/{id}", async (IRepository repository, Guid id) =>
+app.MapGet("/products/{id}", async (IRepository repository, Guid id, IMemoryCache cache) =>
 {
+    var cacheKey = $"products/{id}";
+    if (cache.TryGetValue("cacheKey", out var result))
+        return Results.Ok(result);
+    
     var product = await repository.GetProduct(id);
     if (product == null) return Results.NotFound();
+    
+    cache.Set("product", product, new MemoryCacheEntryOptions
+    {
+        AbsoluteExpiration = DateTimeOffset.Now.AddMinutes(60),
+        SlidingExpiration = TimeSpan.FromMinutes(10)
+    });
     return Results.Ok(product);
 });
 
