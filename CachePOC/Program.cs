@@ -115,7 +115,8 @@ app.MapPut("/products/{id}", async (IRepository repository, Guid id, ProductRequ
 {
     var productResponse = await repository.GetProduct(id);
     if (productResponse == null) return Results.NotFound();
-    return Results.Ok(productResponse);
+    var updatedProduct = await repository.UpdateProduct(product, id);
+    return Results.Ok(updatedProduct);
 });
 
 app.MapDelete("/products/{id}", async (IRepository repository, Guid id, IDistributedCache redis) =>
